@@ -1,21 +1,22 @@
-  # This function takes a square invertible matrix as input parameter and returns a list of 4 functions:
-  # set(), get(), setsolve(), and getsolve()
-
-makeCacheMatrix <- function(x = numeric()) {
-
+  makeCacheMatrix <- function(x = numeric()) {
+  # This function takes a square invertible matrix as input parameter and returns an object of type list 
+  # containing 4 functions: set(), get(), setsolve(), and getsolve(). 
+  # The input matrix is stored as a kind of persistent object
+  
+  
   m <- NULL # initialiaze the inverted matrix object "m"
   
-  # The function set() stores the square invertible matrix passed as imput parameter. 
+  # The function set() stores the matrix passed as imput parameter. 
   # The matrix is stored in the kind of persistent object "x"
   set <- function(y) {
     x <<- y
     m <<- NULL
   }
   
-  # The function get() returns the square invertible matrix
+  # The function get() returns the square invertible matrix stored in the kind of persistent object "x"
   get <- function() x
   
-  # The function setsolve() stores the inversed matrix. 
+  # The function setsolve() stores the inversed matrix passed as parameter (i.e. solve) 
   # The inverted matrix is stored in the kind of persistent object "m"
   setsolve <- function(solve) m <<- solve
   
@@ -29,7 +30,7 @@ makeCacheMatrix <- function(x = numeric()) {
 }
 
 cacheSolve <- function(x, ...) {
-  # This function uses the 4 functions of makeCacheMatrix() to get the matrix, invert it and store it. 
+  # This function takes a variable returned by makeCacheMatrix() to get the matrix, invert it and store it. 
   # The inverted matrix is returned as output
   
   # If the inverted matrix is already existing return it
